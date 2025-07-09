@@ -9,7 +9,8 @@ CYAN = \033[1;36m
 RED = \033[1;31m
 RESET = \033[0m
 
-SRC		= 
+SRC		= main.c \
+		  
 
 OBJ		= $(SRC:.c=.o)
 
@@ -23,6 +24,7 @@ $(NAME): $(OBJ)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "$(CYAN)Compiling $<...$(RESET)"
 
 clean:
 	@rm -f $(OBJ)
