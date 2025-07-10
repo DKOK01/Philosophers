@@ -43,8 +43,6 @@ typedef struct s_data
     pthread_mutex_t	meal;			/* Meal checking mutex */
     pthread_mutex_t	dead_lock;		/* Death flag mutex */
     
-    /* Philosophers array */
-    t_philo			*philos;		/* Array of philosophers */
 }   t_data;
 
 
