@@ -1,5 +1,5 @@
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -pthread
 
 GREEN = \033[1;32m
 BLUE = \033[1;34m
@@ -10,7 +10,11 @@ RED = \033[1;31m
 RESET = \033[0m
 
 SRC		= main.c \
-		  
+		  philo_init.c \
+		  philo_threads.c \
+		  philo_actions.c \
+		  philo_utils.c \
+		  philo_cleanup.c
 
 OBJ		= $(SRC:.c=.o)
 
