@@ -8,6 +8,15 @@
 # include <sys/time.h>
 # include <string.h>
 
+/* ************************************************************************** */
+/*                                MACROS                                      */
+/* ************************************************************************** */
+
+# define EATING		"is eating"
+# define SLEEPING	"is sleeping"
+# define THINKING	"is thinking"
+# define FORK		"has taken a fork"
+# define DIED		"died"
 
 /* ************************************************************************** */
 /*                              STRUCTURES                                    */
@@ -69,7 +78,7 @@ int			init_mutexes(t_data *data);
 
 /* Utils */
 long long	get_time(void);
-void		ft_usleep(long long time);
+void		ft_usleep(long long time, t_data *data);
 void		print_status(t_philo *philo, char *status);
 
 /* Actions */
