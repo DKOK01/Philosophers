@@ -6,13 +6,13 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:07 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/11 09:59:36 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/11 10:56:11 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	print_error(const char *msg)
+void	error_p(const char *msg)
 {
 	int	i;
 
@@ -30,15 +30,15 @@ int	parse_args(int argc, char **argv, t_data *data)
 	int	value;
 
 	if (argc != 5 && argc != 6)
-		return (printf("Error: Wrong number of arguments\n"), 0);
+		return (error_p("Error: Wrong number of arguments\n"), 0);
 	i = 1;
 	while (i < argc)
 	{
 		if (!is_valid_number(argv[i]))
-			return (printf("Error: Invalid number format: '%s'\n", argv[i]), 0);
+			return (error_p("Error: Invalid number format\n"), 0);
 		value = ft_atoi(argv[i]);
 		if (value <= 0)
-			return (printf("Error: Argument %d must be positive\n", i), 0);
+			return (error_p("Error: Invalid number\n"), 0);
 		i++;
 	}
 	data->num_philos = ft_atoi(argv[1]);
@@ -73,5 +73,3 @@ int	main(int argc, char **argv)
 	// cleanup(&data);
 	return (0);
 }
-
-
