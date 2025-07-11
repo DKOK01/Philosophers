@@ -6,7 +6,7 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:07 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/11 10:56:11 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/11 11:23:42 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,18 @@ int	main(int argc, char **argv)
 
 	if (!parse_args(argc, argv, &data))
 		return (1);
-	// if (!init_data(&data))
-	// 	return (printf("Error: Failed to initialize program data\n"), 1);
-	// if (!init_philos(&data))
-	// {
-	// 	cleanup(&data);
-	// 	return (printf("Error: Failed to initialize philosophers\n"), 1);
-	// }
+	if (!init_data(&data))
+		return (error_p("Error: Failed to initialize program data\n"), 1);
+	if (!init_philos(&data))
+	{
+		cleanup(&data);
+		return (error_p("Error: Failed to initialize philosophers\n"), 1);
+	}
 	// if (!start_simulation(&data))
 	// {
 	// 	cleanup(&data);
-	// 	return (printf("Error: Failed to start simulation\n"), 1);
+	// 	return (error_p("Error: Failed to start simulation\n"), 1);
 	// }
-	// cleanup(&data);
+	cleanup(&data);
 	return (0);
 }
