@@ -6,7 +6,7 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:51 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/10 17:25:30 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/11 09:31:51 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	is_valid_number(char *str)
 		return (0);
 	i = 0;
 	if (str[i] == '+')
+		i++;
+	if (str[i] == '-')
 		i++;
 	if (!str[i])
 		return (0);

@@ -70,9 +70,6 @@ int			ft_atoi(const char *str);
 int			is_valid_number(char *str);
 
 /* Initialization */
-int			init_data(t_data *data);
-int			init_philos(t_data *data);
-int			init_mutexes(t_data *data);
 
 /* Utils */
 long long	get_time(void);
@@ -80,22 +77,11 @@ void		ft_usleep(long long time, t_data *data);
 void		print_status(t_philo *philo, char *status);
 
 /* Actions */
-void		eat(t_philo *philo);
-void		sleep_and_think(t_philo *philo);
-int			take_forks(t_philo *philo);
-void		drop_forks(t_philo *philo);
 
 /* Threads */
-int			start_simulation(t_data *data);
-void		*philosopher(void *arg);
-void		*monitor(void *arg);
 
 /* Checks */
-int			is_dead(t_philo *philo);
-int			all_ate_enough(t_data *data);
 
 /* Cleanup */
-void		cleanup(t_data *data);
-void		destroy_mutexes(t_data *data);
 
 #endif
