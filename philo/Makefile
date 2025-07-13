@@ -14,7 +14,8 @@ SRC		= main.c \
 		  philo_threads.c \
 		  philo_actions.c \
 		  philo_utils.c \
-		  philo_cleanup.c
+		  philo_cleanup.c \
+		  philo_monitor.c
 
 OBJ		= $(SRC:.c=.o)
 
