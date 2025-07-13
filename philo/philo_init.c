@@ -6,7 +6,7 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:12 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/12 10:21:21 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/13 10:30:07 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int	init_data(t_data *data)
 int	init_philos(t_data *data)
 {
 	t_philo	*philo;
-	int	i;
-	
+	int		i;
+
 	i = 0;
 	while (i < data->num_philos)
 	{

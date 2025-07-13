@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/13 10:28:22 by aysadeq           #+#    #+#             */
+/*   Updated: 2025/07/13 10:29:27 by aysadeq          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -43,7 +55,7 @@ typedef struct s_data
 
 	t_philo			*philos;
 
-}   t_data;
+}	t_data;
 
 struct s_philo
 {
@@ -55,7 +67,6 @@ struct s_philo
 	pthread_t		thread;
 	t_data			*data;
 };
-
 
 /* ************************************************************************** */
 /*                            FUNCTION PROTOTYPES                             */
@@ -76,19 +87,17 @@ void		ft_usleep(long long time, t_data *data);
 void		print_status(t_philo *philo, char *status);
 
 //--------------Actions--------------//
-// void		eat(t_philo *philo);
-// void		sleep_and_think(t_philo *philo);
-// int			take_forks(t_philo *philo);
-// void		drop_forks(t_philo *philo);
+void		eat(t_philo *philo);
+void		sleep_and_think(t_philo *philo);
 
 //--------------Threads--------------//
-// int			start_simulation(t_data *data);
-// void		*philosopher(void *arg);
-// void		*monitor(void *arg);
+int			start_simulation(t_data *data);
+void		*philosopher(void *arg);
+void		*monitor(void *arg);
 
 //--------------Checks--------------//
-// int			is_dead(t_philo *philo);
-// int			all_ate_enough(t_data *data);
+int			is_dead(t_philo *philo);
+int			all_ate_enough(t_data *data);
 
 //--------------Cleanup--------------//
 void		cleanup(t_data *data);

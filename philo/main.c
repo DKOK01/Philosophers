@@ -6,7 +6,7 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:07 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/11 11:23:42 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/13 09:56:36 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ int	main(int argc, char **argv)
 		cleanup(&data);
 		return (error_p("Error: Failed to initialize philosophers\n"), 1);
 	}
-	// if (!start_simulation(&data))
-	// {
-	// 	cleanup(&data);
-	// 	return (error_p("Error: Failed to start simulation\n"), 1);
-	// }
+	if (!start_simulation(&data))
+	{
+		cleanup(&data);
+		return (error_p("Error: Failed to start simulation\n"), 1);
+	}
 	cleanup(&data);
 	return (0);
 }

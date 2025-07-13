@@ -6,7 +6,7 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:24 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/13 09:04:01 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/13 09:56:27 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	handle_single_philo(t_philo *philo)
 	pthread_mutex_unlock(&philo->data->forks[0]);
 }
 
-static int	take_forks(t_philo *philo)
+int	take_forks(t_philo *philo)
 {
 	int	first_fork;
 	int	second_fork;
