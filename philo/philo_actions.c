@@ -6,17 +6,83 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:24 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/10 10:52:27 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/13 09:04:01 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-/*
- * Functions for philosopher actions:
- * - philo_eat()
- * - philo_sleep()
- * - philo_think()
- * - take_forks()
- * - release_forks()
- */
+static void	handle_single_philo(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->data->forks[0]);
+	print_status(philo, FORK);
+	ft_usleep(philo->data->time_to_die, philo->data);
+	pthread_mutex_unlock(&philo->data->forks[0]);
+}
+
+static int	take_forks(t_philo *philo)
+{
+	int	first_fork;
+	int	second_fork;
+
+	if (philo->data->num_philos == 1)
+	{
+		handle_single_philo(philo);
+		return (0);
+	}
+	if (philo->left_fork < philo->right_fork)
+	{
+		first_fork = philo->left_fork;
+		second_fork = philo->right_fork;
+	}
+	else
+	{
+		first_fork = philo->right_fork;
+		second_fork = philo->left_fork;
+	}
+	pthread_mutex_lock(&philo->data->forks[first_fork]);
+	print_status(philo, FORK);
+	if (philo->data->dead)
+		return (pthread_mutex_unlock(&philo->data->forks[first_fork]), 0);
+	pthread_mutex_lock(&philo->data->forks[second_fork]);
+	print_status(philo, FORK);
+	return (1);
+}
+
+static void	update_meal_data(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->data->meal);
+	philo->last_meal = get_time();
+	philo->meals_eaten++;
+	pthread_mutex_unlock(&philo->data->meal);
+}
+
+void	eat(t_philo *philo)
+{
+	if (philo->data->dead)
+		return ;
+	if (!take_forks(philo))
+		return ;
+	if (philo->data->dead)
+	{
+		pthread_mutex_unlock(&philo->data->forks[philo->left_fork]);
+		pthread_mutex_unlock(&philo->data->forks[philo->right_fork]);
+		return ;
+	}
+	print_status(philo, EATING);
+	update_meal_data(philo);
+	ft_usleep(philo->data->time_to_eat, philo->data);
+	pthread_mutex_unlock(&philo->data->forks[philo->left_fork]);
+	pthread_mutex_unlock(&philo->data->forks[philo->right_fork]);
+}
+
+void	sleep_and_think(t_philo *philo)
+{
+	if (philo->data->dead)
+		return ;
+	print_status(philo, SLEEPING);
+	ft_usleep(philo->data->time_to_sleep, philo->data);
+	if (philo->data->dead)
+		return ;
+	print_status(philo, THINKING);
+}
