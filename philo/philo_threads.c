@@ -6,7 +6,7 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:32 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/14 11:11:08 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/14 12:14:00 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static void	*philosopher(void *arg)
 		eat(philo);
 		if (philo->data->dead || philo->data->finished)
 			break ;
-		sleep_and_think(philo);
 		if (philo->data->must_eat != -1
 			&& philo->meals_eaten >= philo->data->must_eat)
 			break ;
+		sleep_and_think(philo);
 	}
 	return (NULL);
 }
