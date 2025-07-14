@@ -6,7 +6,7 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:51 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/11 09:31:51 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/14 10:57:40 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_usleep(long long time, t_data *data)
 	{
 		if (data->dead)
 			break ;
-		usleep(500);
+		usleep(100);
 	}
 }
 

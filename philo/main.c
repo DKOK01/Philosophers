@@ -6,13 +6,13 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:07 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/13 09:56:36 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/14 09:15:22 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	error_p(const char *msg)
+static void	error_p(const char *msg)
 {
 	int	i;
 

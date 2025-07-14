@@ -6,13 +6,13 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:32 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/13 18:26:46 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/14 11:11:08 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*philosopher(void *arg)
+static void	*philosopher(void *arg)
 {
 	t_philo	*philo;
 
