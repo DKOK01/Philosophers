@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 10:28:22 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/13 10:29:27 by aysadeq          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -34,73 +22,66 @@
 /*                              STRUCTURES                                    */
 /* ************************************************************************** */
 
-typedef struct s_philo	t_philo;
-
+/* Shared program data structure */
 typedef struct s_data
 {
-	int				num_philos;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				must_eat;
+    /* Program arguments */
+    int				num_philos;		/* Number of philosophers */
+    int				time_to_die;	/* Time to die (ms) */
+    int				time_to_eat;	/* Time to eat (ms) */
+    int				time_to_sleep;	/* Time to sleep (ms) */
+    int				must_eat;		/* Required meals (-1 if not set) */
+    
+    /* Program state */
+    int				dead;			/* Death flag (0 = alive, 1 = dead) */
+    int				finished;		/* All ate enough flag */
+    long long		start_time;		/* Program start timestamp */
+    
+    /* Synchronization */
+    pthread_mutex_t	*forks;			/* Array of fork mutexes */
+    pthread_mutex_t	print;			/* Print mutex */
+    pthread_mutex_t	meal;			/* Meal checking mutex */
+    pthread_mutex_t	dead_lock;		/* Death flag mutex */
+    
+}   t_data;
 
-	int				dead;
-	int				finished;
-	long long		start_time;
 
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	print;
-	pthread_mutex_t	meal;
-	pthread_mutex_t	dead_lock;
 
-	t_philo			*philos;
-
-}	t_data;
-
-struct s_philo
+/* Individual philosopher structure */
+typedef struct s_philo
 {
-	int				id;
-	int				meals_eaten;
-	long long		last_meal;
-	int				left_fork;
-	int				right_fork;
-	pthread_t		thread;
-	t_data			*data;
-};
+	int				id;				/* Philosopher ID (1 to n) */
+	int				meals_eaten;	/* Number of meals eaten */
+	long long		last_meal;		/* Timestamp of last meal */
+	int				left_fork;		/* Left fork index */
+	int				right_fork;		/* Right fork index */
+	pthread_t		thread;			/* Philosopher thread */
+	t_data			*data;			/* Pointer to shared data */
+}	t_philo;
+
 
 /* ************************************************************************** */
 /*                            FUNCTION PROTOTYPES                             */
 /* ************************************************************************** */
 
-//--------------Parsing and validation--------------//
+/* Parsing and validation */
 int			parse_args(int argc, char **argv, t_data *data);
 int			ft_atoi(const char *str);
 int			is_valid_number(char *str);
 
-//--------------Initialization--------------//
-int			init_data(t_data *data);
-int			init_philos(t_data *data);
+/* Initialization */
 
-//--------------Utils--------------//
+/* Utils */
 long long	get_time(void);
 void		ft_usleep(long long time, t_data *data);
 void		print_status(t_philo *philo, char *status);
 
-//--------------Actions--------------//
-void		eat(t_philo *philo);
-void		sleep_and_think(t_philo *philo);
+/* Actions */
 
-//--------------Threads--------------//
-int			start_simulation(t_data *data);
-void		*philosopher(void *arg);
-void		*monitor(void *arg);
+/* Threads */
 
-//--------------Checks--------------//
-int			is_dead(t_philo *philo);
-int			all_ate_enough(t_data *data);
+/* Checks */
 
-//--------------Cleanup--------------//
-void		cleanup(t_data *data);
-void		destroy_mutexes(t_data *data);
+/* Cleanup */
 
 #endif

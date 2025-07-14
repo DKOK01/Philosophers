@@ -6,13 +6,13 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 18:26:15 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/13 18:44:15 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/14 08:42:39 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	is_dead(t_philo *philo)
+static int	is_dead(t_philo *philo)
 {
 	long long	current_time;
 	long long	time_since_meal;
@@ -24,7 +24,7 @@ int	is_dead(t_philo *philo)
 	return (time_since_meal > philo->data->time_to_die);
 }
 
-int	all_ate_enough(t_data *data)
+static int	all_ate_enough(t_data *data)
 {
 	int	i;
 
