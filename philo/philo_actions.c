@@ -6,7 +6,7 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:24 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/14 11:47:44 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/15 11:46:11 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,12 @@ static void	update_meal_data(t_philo *philo)
 	pthread_mutex_lock(&philo->data->meal);
 	philo->last_meal = get_time();
 	philo->meals_eaten++;
+	if (philo->data->must_eat != -1
+		&& philo->meals_eaten >= philo->data->must_eat)
+	{
+		pthread_mutex_unlock(&philo->data->meal);
+		return ;
+	}
 	pthread_mutex_unlock(&philo->data->meal);
 }
 
@@ -78,11 +84,10 @@ void	eat(t_philo *philo)
 
 void	sleep_and_think(t_philo *philo)
 {
-	if (philo->data->dead)
+	if (!check_and_print_sleeping(philo))
 		return ;
-	print_status(philo, SLEEPING);
 	ft_usleep(philo->data->time_to_sleep, philo->data);
 	if (philo->data->dead)
 		return ;
-	print_status(philo, THINKING);
+	check_and_print_thinking(philo);
 }

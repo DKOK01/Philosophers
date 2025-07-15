@@ -6,7 +6,7 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 18:26:15 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/14 08:42:39 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/15 11:02:44 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,8 @@ static void	print_death(t_philo *philo)
 	long long	timestamp;
 
 	pthread_mutex_lock(&philo->data->print);
-	if (!philo->data->dead)
-	{
-		timestamp = get_time() - philo->data->start_time;
-		printf("%lld %d %s\n", timestamp, philo->id, DIED);
-	}
+	timestamp = get_time() - philo->data->start_time;
+	printf("%lld %d %s\n", timestamp, philo->id, DIED);
 	pthread_mutex_unlock(&philo->data->print);
 }
 
@@ -67,10 +64,10 @@ static int	check_deaths(t_data *data)
 	{
 		if (is_dead(&data->philos[i]))
 		{
-			print_death(&data->philos[i]);
 			pthread_mutex_lock(&data->dead_lock);
 			data->dead = 1;
 			pthread_mutex_unlock(&data->dead_lock);
+			print_death(&data->philos[i]);
 			return (1);
 		}
 		i++;

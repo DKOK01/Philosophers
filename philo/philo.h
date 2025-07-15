@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/15 11:48:09 by aysadeq           #+#    #+#             */
+/*   Updated: 2025/07/15 11:50:22 by aysadeq          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -22,28 +34,28 @@
 /*                              STRUCTURES                                    */
 /* ************************************************************************** */
 
-typedef struct s_philo t_philo;
+typedef struct s_philo	t_philo;
 
 typedef struct s_data
 {
-    int				num_philos;
-    int				time_to_die;
-    int				time_to_eat;
-    int				time_to_sleep;
-    int				must_eat;
+	int				num_philos;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				must_eat;
 
-    int				dead;
-    int				finished;
-    long long		start_time;
+	int				dead;
+	int				finished;
+	long long		start_time;
 
-    pthread_mutex_t	*forks;
-    pthread_mutex_t	print;
-    pthread_mutex_t	meal;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	print;
+	pthread_mutex_t	meal;
 	pthread_mutex_t	dead_lock;
 
 	t_philo			*philos;
 
-}   t_data;
+}	t_data;
 
 struct s_philo
 {
@@ -55,7 +67,6 @@ struct s_philo
 	pthread_t		thread;
 	t_data			*data;
 };
-
 
 /* ************************************************************************** */
 /*                            FUNCTION PROTOTYPES                             */
@@ -75,10 +86,12 @@ void		print_status(t_philo *philo, char *status);
 void		eat(t_philo *philo);
 void		sleep_and_think(t_philo *philo);
 
+int			check_and_print_sleeping(t_philo *philo);
+void		check_and_print_thinking(t_philo *philo);
+
 int			start_simulation(t_data *data);
 void		*monitor(void *arg);
 
 void		cleanup(t_data *data);
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:51 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/14 10:57:40 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/15 11:02:45 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,12 @@ void	print_status(t_philo *philo, char *status)
 	long long	timestamp;
 
 	pthread_mutex_lock(&philo->data->print);
+	pthread_mutex_lock(&philo->data->dead_lock);
 	if (!philo->data->dead)
 	{
 		timestamp = get_time() - philo->data->start_time;
 		printf("%lld %d %s\n", timestamp, philo->id, status);
 	}
+	pthread_mutex_unlock(&philo->data->dead_lock);
 	pthread_mutex_unlock(&philo->data->print);
 }
