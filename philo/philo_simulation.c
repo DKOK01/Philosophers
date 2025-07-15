@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_threads.c                                    :+:      :+:    :+:   */
+/*   philo_simulation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:32 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/15 16:51:33 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/15 20:02:43 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static void	*philosopher(void *arg)
 		if (philo->id % 2 == 0)
 			ft_usleep(1, philo->data);
 	}
-	while (!philo->data->dead && !philo->data->finished)
+	while (!is_simulation_over(philo->data))
 	{
 		eat(philo);
-		if (philo->data->dead || philo->data->finished)
+		if (is_simulation_over(philo->data))
 			break ;
 		sleep_and_think(philo);
 	}

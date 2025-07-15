@@ -6,7 +6,7 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:51 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/15 11:02:45 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/15 20:01:52 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,13 @@ void	ft_usleep(long long time, t_data *data)
 	start = get_time();
 	while ((get_time() - start) < time)
 	{
+		pthread_mutex_lock(&data->dead_lock);
 		if (data->dead)
+		{
+			pthread_mutex_unlock(&data->dead_lock);
 			break ;
+		}
+		pthread_mutex_unlock(&data->dead_lock);
 		usleep(100);
 	}
 }

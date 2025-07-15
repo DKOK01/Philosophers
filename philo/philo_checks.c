@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_check.c                                      :+:      :+:    :+:   */
+/*   philo_checks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 11:45:49 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/15 11:46:50 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/15 20:02:52 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	is_simulation_over(t_data *data)
+{
+	int	result;
+
+	pthread_mutex_lock(&data->dead_lock);
+	result = data->dead || data->finished;
+	pthread_mutex_unlock(&data->dead_lock);
+	return (result);
+}
 
 int	check_and_print_sleeping(t_philo *philo)
 {

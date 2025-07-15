@@ -6,7 +6,7 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:24 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/15 17:10:29 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/15 20:01:32 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static void	update_meal_data(t_philo *philo)
 
 void	eat(t_philo *philo)
 {
-	if (philo->data->dead)
+	if (is_simulation_over(philo->data))
 		return ;
 	if (!take_forks(philo))
 		return ;
-	if (philo->data->dead)
+	if (is_simulation_over(philo->data))
 	{
 		pthread_mutex_unlock(&philo->data->forks[philo->left_fork]);
 		pthread_mutex_unlock(&philo->data->forks[philo->right_fork]);
@@ -52,7 +52,7 @@ void	sleep_and_think(t_philo *philo)
 	if (!check_and_print_sleeping(philo))
 		return ;
 	ft_usleep(philo->data->time_to_sleep, philo->data);
-	if (philo->data->dead)
+	if (is_simulation_over(philo->data))
 		return ;
 	check_and_print_thinking(philo);
 	if (philo->data->num_philos % 2 == 1)

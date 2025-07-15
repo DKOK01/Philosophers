@@ -6,7 +6,7 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 11:48:09 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/15 17:05:40 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/15 20:01:32 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int			take_forks(t_philo *philo);
 //--------------- checks -------------//
 int			check_and_print_sleeping(t_philo *philo);
 void		check_and_print_thinking(t_philo *philo);
+int			is_simulation_over(t_data *data);
 
 //--------------- simulation -------------//
 int			start_simulation(t_data *data);

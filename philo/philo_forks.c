@@ -6,7 +6,7 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 17:00:46 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/15 17:10:35 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/15 20:01:32 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	take_forks(t_philo *philo)
 		get_fork_order_even(philo, &first_fork, &second_fork);
 	pthread_mutex_lock(&philo->data->forks[first_fork]);
 	print_status(philo, FORK);
-	if (philo->data->dead)
+	if (is_simulation_over(philo->data))
 		return (pthread_mutex_unlock(&philo->data->forks[first_fork]), 0);
 	pthread_mutex_lock(&philo->data->forks[second_fork]);
 	print_status(philo, FORK);

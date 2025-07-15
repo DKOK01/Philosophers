@@ -1,5 +1,5 @@
 CC		= cc
-CFLAGS	= -Wall -Wextra -Werror -pthread
+CFLAGS	= -Wall -Wextra -Werror -fsanitize=thread -g
 
 GREEN = \033[1;32m
 BLUE = \033[1;34m
