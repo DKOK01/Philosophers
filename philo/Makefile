@@ -11,12 +11,13 @@ RESET = \033[0m
 
 SRC		= main.c \
 		  philo_init.c \
-		  philo_threads.c \
+		  philo_simulation.c \
 		  philo_actions.c \
 		  philo_utils.c \
 		  philo_cleanup.c \
 		  philo_monitor.c \
 		  philo_checks.c \
+		  philo_forks.c 
 
 OBJ		= $(SRC:.c=.o)
 

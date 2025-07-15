@@ -6,7 +6,7 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 11:48:09 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/15 11:50:22 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/15 17:05:40 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,26 +72,36 @@ struct s_philo
 /*                            FUNCTION PROTOTYPES                             */
 /* ************************************************************************** */
 
+//--------------- parsing arguments -------------//
 int			parse_args(int argc, char **argv, t_data *data);
 int			ft_atoi(const char *str);
 int			is_valid_number(char *str);
 
+//--------------- initialization -------------//
 int			init_data(t_data *data);
 int			init_philos(t_data *data);
 
+//--------------- utilities -------------//
 long long	get_time(void);
 void		ft_usleep(long long time, t_data *data);
 void		print_status(t_philo *philo, char *status);
 
+//--------------- philosopher actions -------------//
 void		eat(t_philo *philo);
 void		sleep_and_think(t_philo *philo);
 
+//--------------- philosopher forks -------------//
+int			take_forks(t_philo *philo);
+
+//--------------- checks -------------//
 int			check_and_print_sleeping(t_philo *philo);
 void		check_and_print_thinking(t_philo *philo);
 
+//--------------- simulation -------------//
 int			start_simulation(t_data *data);
 void		*monitor(void *arg);
 
+//--------------- cleanup -------------//
 void		cleanup(t_data *data);
 
 #endif
