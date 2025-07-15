@@ -6,7 +6,7 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:24 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/15 11:46:11 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/15 16:57:25 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,31 @@ int	take_forks(t_philo *philo)
 		handle_single_philo(philo);
 		return (0);
 	}
-	if (philo->left_fork < philo->right_fork)
+	if (philo->data->num_philos % 2 == 1)
 	{
-		first_fork = philo->left_fork;
-		second_fork = philo->right_fork;
+		if (philo->id == philo->data->num_philos)
+		{
+			first_fork = philo->right_fork;
+			second_fork = philo->left_fork;
+		}
+		else
+		{
+			first_fork = philo->left_fork;
+			second_fork = philo->right_fork;
+		}
 	}
 	else
 	{
-		first_fork = philo->right_fork;
-		second_fork = philo->left_fork;
+		if (philo->left_fork < philo->right_fork)
+		{
+			first_fork = philo->left_fork;
+			second_fork = philo->right_fork;
+		}
+		else
+		{
+			first_fork = philo->right_fork;
+			second_fork = philo->left_fork;
+		}
 	}
 	pthread_mutex_lock(&philo->data->forks[first_fork]);
 	print_status(philo, FORK);
@@ -84,10 +100,19 @@ void	eat(t_philo *philo)
 
 void	sleep_and_think(t_philo *philo)
 {
+	long long	think_time;
+
 	if (!check_and_print_sleeping(philo))
 		return ;
 	ft_usleep(philo->data->time_to_sleep, philo->data);
 	if (philo->data->dead)
 		return ;
 	check_and_print_thinking(philo);
+	if (philo->data->num_philos % 2 == 1)
+	{
+		think_time = (philo->data->time_to_eat * 2)
+			- philo->data->time_to_sleep;
+		if (think_time > 0)
+			ft_usleep(think_time / 2, philo->data);
+	}
 }

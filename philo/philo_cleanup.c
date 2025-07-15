@@ -6,13 +6,13 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:43 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/12 10:50:56 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/15 16:54:57 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	destroy_mutexes(t_data *data)
+static void	destroy_mutexes(t_data *data)
 {
 	int	i;
 
