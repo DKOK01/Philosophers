@@ -6,7 +6,7 @@
 /*   By: aysadeq <aysadeq@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 10:52:32 by aysadeq           #+#    #+#             */
-/*   Updated: 2025/07/15 20:41:49 by aysadeq          ###   ########.fr       */
+/*   Updated: 2025/07/16 09:34:16 by aysadeq          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	*philosopher(void *arg)
 	else
 	{
 		if (philo->id % 2 == 0)
-			ft_usleep(1, philo->data);
+			ft_usleep(philo->data->time_to_eat / 2, philo->data);
 	}
 	while (!is_simulation_over(philo->data))
 	{
